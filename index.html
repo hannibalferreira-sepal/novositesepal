@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#0a111d}body{font-family:'Instrument Sans',sans-serif;color:#f3efe8;overflow-x:hidden}a{color:inherit;text-decoration:none}a:hover{color:#ff8a4c}*{box-sizing:border-box}</style>
+<style>@keyframes sepalSlide{0%{opacity:0;transform:translateX(8%) scale(1.04)}4%{opacity:1;transform:translateX(0) scale(1)}16.67%{opacity:1;transform:translateX(0) scale(1)}20.67%{opacity:0;transform:translateX(-8%) scale(1.04)}100%{opacity:0}}</style></helmet>
+<div style="background:#0a111d;color:#f3efe8">
+
+<section data-screen-label="Hero" ref="{{ heroRef }}" onMouseMove="{{ heroMove }}" style="position:relative;height:100vh;min-height:720px;overflow:hidden;display:flex;flex-direction:column">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,#1c2e4c 0%,#0a111d 60%)"></div>
+<sc-if value="{{ heroA }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ shapesA }}" as="s" hint-placeholder-count="0"><div data-hd="{{ s.d }}" style="position:absolute;right:{{ s.x }};top:{{ s.y }};width:{{ s.w }};height:{{ s.h }};border-radius:{{ s.rad }};overflow:hidden;rotate:{{ s.rot }};box-shadow:0 30px 60px rgba(0,0,0,.45);transition:translate .4s ease-out">
+<img src="{{ s.src }}" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:{{ s.flt }};transform:scale({{ s.sc }})"><div style="position:absolute;inset:0;background:{{ s.tint }};mix-blend-mode:{{ s.blend }};opacity:{{ s.tn }}"></div>
+<sc-if value="{{ s.logo }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:grid;place-items:center"><span style="background:rgba(255,255,255,.94);border-radius:18px;padding:12px 20px;display:grid;place-items:center;max-width:86%;box-shadow:0 10px 30px rgba(0,0,0,.35)"><img src="{{ s.logo }}" alt="{{ s.alt }}" draggable="false" style="max-width:100%;max-height:92px;display:block"></span></div></sc-if>
+<sc-if value="{{ s.label }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:grid;place-items:center"><span style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:rgba(255,255,255,.95);border-radius:14px;padding:8px 12px 7px;max-width:88%;box-shadow:0 10px 30px rgba(0,0,0,.35);zoom:.82"><span style="display:flex;align-items:center;gap:9px;white-space:nowrap"><sc-if value="{{ s.grid }}" hint-placeholder-val="{{ false }}"><span style="display:grid;grid-template-columns:repeat(2,18px);gap:3px"><span style="height:18px;border-radius:5px;background:#ff6a2b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/1.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3b6ea8;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/2.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#e0a400;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/3.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3fa66b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/5.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span></span></sc-if><sc-if value="{{ s.play }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;border-radius:8px;background:#039b9e;display:grid;place-items:center"><span style="width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px"></span></span></sc-if><span style="font:800 clamp(13px,1.3vw,18px) 'Archivo',sans-serif;color:#0a111d;letter-spacing:-.01em">{{ s.label }}</span></span><sc-if value="{{ s.sub }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'Instrument Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:{{ s.lc }}">{{ s.sub }}</span></sc-if></span></div></sc-if>
+</div></sc-for>
+</sc-if>
+<sc-if value="{{ heroB }}" hint-placeholder-val="{{ true }}">
+<div data-hd="16" style="position:absolute;right:2%;top:-10%;bottom:-10%;width:58%;perspective:1400px;transition:translate .5s ease-out">
+<div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transform:rotateX(16deg) rotateY(-20deg) rotateZ(9deg);transform-style:preserve-3d">
+<sc-for list="{{ colsB }}" as="col" hint-placeholder-count="3"><div style="position:relative;overflow:hidden;height:100%"><div data-col="{{ col.v }}" style="display:flex;flex-direction:column;gap:16px;will-change:transform">
+<sc-for list="{{ col.items }}" as="s" hint-placeholder-count="6"><div style="position:relative;flex:none;height:{{ s.h }};border-radius:{{ s.rad }};overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.45)">
+<img src="{{ s.src }}" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:{{ s.flt }};transform:scale({{ s.sc }})"><div style="position:absolute;inset:0;background:{{ s.tint }};mix-blend-mode:{{ s.blend }};opacity:{{ s.tn }}"></div>
+<sc-if value="{{ s.logo }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:grid;place-items:center"><span style="background:rgba(255,255,255,.94);border-radius:18px;padding:12px 20px;display:grid;place-items:center;max-width:86%;box-shadow:0 10px 30px rgba(0,0,0,.35)"><img src="{{ s.logo }}" alt="{{ s.alt }}" draggable="false" style="max-width:100%;max-height:92px;display:block"></span></div></sc-if>
+<sc-if value="{{ s.label }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:grid;place-items:center"><span style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:rgba(255,255,255,.95);border-radius:14px;padding:8px 12px 7px;max-width:88%;box-shadow:0 10px 30px rgba(0,0,0,.35);zoom:.82"><span style="display:flex;align-items:center;gap:9px;white-space:nowrap"><sc-if value="{{ s.grid }}" hint-placeholder-val="{{ false }}"><span style="display:grid;grid-template-columns:repeat(2,18px);gap:3px"><span style="height:18px;border-radius:5px;background:#ff6a2b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/1.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3b6ea8;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/2.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#e0a400;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/3.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3fa66b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/5.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span></span></sc-if><sc-if value="{{ s.play }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;border-radius:8px;background:#039b9e;display:grid;place-items:center"><span style="width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px"></span></span></sc-if><span style="font:800 clamp(13px,1.3vw,18px) 'Archivo',sans-serif;color:#0a111d;letter-spacing:-.01em">{{ s.label }}</span></span><sc-if value="{{ s.sub }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'Instrument Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:{{ s.lc }}">{{ s.sub }}</span></sc-if></span></div></sc-if>
+</div></sc-for>
+</div></div></sc-for>
+</div>
+</div>
+</sc-if>
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,17,29,.85) 0%,rgba(10,17,29,.35) 45%,rgba(10,17,29,0) 70%),linear-gradient(180deg,rgba(10,17,29,0) 70%,#0a111d 100%);pointer-events:none"></div>
+<header style="position:relative;z-index:2;display:grid;grid-template-columns:{{ headerCols }};align-items:center;gap:24px;padding:28px clamp(20px,4vw,56px)">
+<a href="https://sepal.org.br/"><img src="https://sepal.org.br/wp-content/uploads/2026/03/sepal_logo_borda_branca-e1772837337935.png" alt="SEPAL" style="height:44px;display:block"></a>
+<nav style="display:{{ navDisplay }};gap:4px;padding:8px;border-radius:999px;background:rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18)">
+<sc-for list="{{ menuMain }}" as="m" hint-placeholder-count="3"><a href="{{ m.href }}" style="display:flex;align-items:baseline;gap:6px;padding:14px clamp(12px,1.7vw,26px);border-radius:999px;font-size:clamp(14px,1.45vw,18px);font-weight:500;color:#fff;white-space:nowrap" style-hover="background:rgba(255,255,255,.16);color:#fff"><span style="font-size:11px;opacity:.6">{{ m.n }}</span><span>{{ m.t }}</span></a></sc-for>
+<div onMouseEnter="{{ ddOpen }}" onMouseLeave="{{ ddClose }}" style="position:relative">
+<a href="https://sepal.org.br/envolva-se/" style="display:flex;align-items:baseline;gap:6px;padding:14px clamp(12px,1.7vw,26px);border-radius:999px;font-size:clamp(14px,1.45vw,18px);font-weight:500;color:#fff;white-space:nowrap;background:{{ ddBg }}"><span style="font-size:11px;opacity:.6">04</span><span>Envolva-se</span><span style="font-size:10px;opacity:.7">▼</span></a>
+<sc-if value="{{ dd }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;top:100%;right:0;padding-top:12px;z-index:30">
+<div style="width:280px;background:#0e1a2e;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:8px;display:flex;flex-direction:column;gap:4px;box-shadow:0 24px 50px rgba(0,0,0,.5)">
+<sc-for list="{{ envolvaMenu }}" as="o" hint-placeholder-count="3"><a href="{{ o.href }}" style="display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;color:#fff" style-hover="background:rgba(255,255,255,.08);color:#fff"><span style="font-weight:600;font-size:15px;color:{{ o.color }}">{{ o.t }}</span><span style="font-size:13px;color:#a9b1bd">{{ o.s }}</span></a></sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+
+</nav>
+<div style="display:flex;justify-content:flex-end"><a href="https://sepal.org.br/area-missionario/" style="display:{{ desktopInline }};box-sizing:border-box;align-items:center;justify-content:center;text-align:center;min-height:68px;padding:0 clamp(18px,2.2vw,34px);border-radius:999px;font-size:clamp(14px,1.45vw,18px);font-weight:600;color:#fff;white-space:nowrap;background:rgba(214,92,104,.32);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,150,160,.45)" style-hover="background:rgba(214,92,104,.5);color:#fff">Área Missionária</a><button type="button" onClick="{{ openMenu }}" style="display:{{ burgerDisplay }};align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font:600 14px 'Instrument Sans',sans-serif;cursor:pointer">Menu ☰</button></div>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:fixed;inset:0;z-index:100;background:rgba(10,17,29,.97);display:flex;flex-direction:column;gap:8px;padding:24px;overflow:auto">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px"><img src="https://sepal.org.br/wp-content/uploads/2026/03/sepal_logo_borda_branca-e1772837337935.png" alt="SEPAL" style="height:40px"><button type="button" onClick="{{ closeMenu }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;font:600 14px 'Instrument Sans',sans-serif;cursor:pointer">Fechar ✕</button></div>
+<sc-for list="{{ menuAll }}" as="m" hint-placeholder-count="4"><a href="{{ m.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#fff"><span style="font-size:13px;color:#ff8a4c">{{ m.n }}</span><span style="font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:-.02em;font-size:40px;line-height:1">{{ m.t }}</span></a></sc-for>
+<div style="display:flex;flex-direction:column;gap:4px;margin-top:16px"><sc-for list="{{ envolvaMenu }}" as="o" hint-placeholder-count="3"><a href="{{ o.href }}" style="display:flex;flex-direction:column;padding:10px 0;color:#fff"><span style="font-weight:600;font-size:16px;color:{{ o.color }}">{{ o.t }}</span><span style="font-size:13px;color:#a9b1bd">{{ o.s }}</span></a></sc-for></div>
+</div></sc-if>
+<div ref="{{ heroTitle }}" style="position:relative;z-index:2;margin-top:auto;padding:0 clamp(20px,4vw,56px) 56px;will-change:transform;transition:transform .3s ease-out;transform-style:preserve-3d">
+<div style="display:flex;gap:16px;align-items:center;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffb48a;margin-bottom:18px"><span>Missão internacional</span><span style="width:40px;height:1px;background:#ffb48a"></span><span>Brasil · desde 1963</span></div>
+<h1 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(34px,5vw,84px);line-height:1.02;letter-spacing:-.02em;text-shadow:0 0 24px rgba(10,17,29,.9),0 0 60px rgba(10,17,29,.75),0 2px 6px rgba(0,0,0,.5)">Servindo<br>aos que<br>servem<span style="color:#ff6a2b">*</span></h1>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:32px">
+<p style="margin:0;max-width:520px;font-size:18px;line-height:1.5;color:#e6e1d8;text-wrap:pretty;text-shadow:0 0 14px rgba(10,17,29,.95),0 0 32px rgba(10,17,29,.8)">Nosso sonho é ver uma igreja saudável, ao alcance de todo brasileiro, que possa levar o evangelho de Jesus Cristo ao mundo todo.</p>
+<a href="https://sepal.org.br/programa-de-afiliacao" style="display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600"><span style="width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:grid;place-items:center;font-size:20px">↓</span>Caminhe conosco</a>
+</div>
+</div>
+</section>
+
+<section data-screen-label="Quem somos" style="position:relative;padding:clamp(80px,12vw,160px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:center;overflow:hidden">
+<div data-reveal="1" style="display:flex;flex-direction:column;gap:28px">
+<div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff8a4c">(01) Quem somos</div>
+<p style="margin:0;font-family:'Archivo';font-weight:500;font-stretch:100%;font-size:clamp(24px,2.6vw,38px);line-height:1.25;letter-spacing:-.01em;text-wrap:pretty">Sepal – Servindo aos Pastores e Líderes é uma missão internacional, estabelecida no Brasil em 1963. Estamos empenhados em causar impacto em líderes e igrejas, encorajando-os e desafiando-os a desenvolver ministérios saudáveis.</p>
+<p style="margin:0;font-size:17px;line-height:1.6;color:#a9b1bd;max-width:560px">A Sepal faz parte da Aliança Global OC, uma missão interdenominacional na sua estrutura e intereclesiástica no seu ministério.</p>
+<a href="https://sepal.org.br/quem-somos/" style="align-self:flex-start;border:1px solid rgba(255,255,255,.3);padding:14px 24px;border-radius:999px;font-weight:600;font-size:14px" style-hover="background:#fff;color:#0a111d">Saiba mais →</a>
+</div>
+<div style="position:relative;height:clamp(380px,48vw,620px);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-1.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 0s infinite both"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-6.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 3s infinite both"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-8.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 6s infinite both"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-3.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 9s infinite both"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-10.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 12s infinite both"><img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-5.jpg" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:sepalSlide 18s ease-in-out 15s infinite both"></div>
+</section>
+
+<section data-screen-label="Áreas" style="position:relative;padding:clamp(80px,10vw,140px) 0;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#16233a 0%,#0a111d 65%)">
+<div data-reveal="1" style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:0 24px">
+<div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff8a4c">(02) Como apoiamos</div>
+<h2 style="margin:0;font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:clamp(34px,5vw,72px);line-height:.95;letter-spacing:-.02em;max-width:1000px;text-wrap:balance">Nossas áreas de suporte aos missionários e seus ministérios</h2>
+<p style="margin:0;font-size:14px;color:#8b95a3">Arraste para girar</p>
+</div>
+<div onPointerDown="{{ ringDown }}" style="position:relative;height:520px;margin-top:40px;perspective:1600px;cursor:grab;touch-action:pan-y;user-select:none">
+<div ref="{{ ringRef }}" style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d">
+<sc-for list="{{ areas }}" as="a" hint-placeholder-count="6">
+<div style="position:absolute;left:-150px;top:-190px;width:300px;height:380px;border-radius:22px;overflow:hidden;transform:{{ a.tf }};backface-visibility:hidden;box-shadow:0 40px 80px rgba(0,0,0,.45)">
+<img src="{{ a.bg }}" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,29,.1) 20%,rgba(10,17,29,.92) 100%)"></div>
+<div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:24px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="width:104px;height:104px;border-radius:50%;background:#fff;display:grid;place-items:center"><img src="{{ a.icon }}" alt="" draggable="false" style="width:68px;height:68px;object-fit:contain"></span><span style="font-family:'Archivo';font-weight:700;font-size:15px;color:#ffb48a">{{ a.n }}</span></div>
+<span style="font-family:'Archivo';font-weight:700;font-stretch:105%;font-size:24px;line-height:1.1;text-shadow:0 0 14px rgba(10,17,29,.95),0 0 34px rgba(10,17,29,.8)">{{ a.t }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section data-screen-label="Onde estamos" style="position:relative;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:48px;overflow:hidden">
+<div style="display:flex;flex-direction:column;gap:18px;max-width:760px">
+<div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff8a4c">(03) Onde estamos</div>
+<h2 style="margin:0;font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:clamp(40px,5.4vw,80px);line-height:.92;letter-spacing:-.02em">Missionários pelo mundo</h2>
+<p style="margin:0;font-size:17px;line-height:1.6;color:#a9b1bd">{{ locSummary }} Passe o mouse em um mini logo para ver o local e clique para conhecer os missionários.</p>
+</div>
+<div style="display:grid;grid-template-columns:{{ globeCols }};gap:48px;align-items:center">
+<div style="width:100%;max-width:440px;justify-self:{{ globeJustify }}"><x-import component-from-global-scope="sepal-globe" from="./sepal-globe.js" hint-size="100%,440px"></x-import></div>
+<div style="min-height:{{ panelMinH }};display:flex;flex-direction:column;justify-content:center;order:{{ panelOrder }}">
+<div style="display:{{ chipsDisplay }};flex-direction:column;gap:14px">
+<span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8b95a3">Brasil</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ locBR }}" as="l" hint-placeholder-count="8"><button type="button" onClick="{{ l.pick }}" style="display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#f3efe8;font:500 14px 'Instrument Sans',sans-serif;cursor:pointer" style-hover="background:rgba(255,255,255,.1)"><span style="width:20px;height:20px;border-radius:6px;background:{{ l.c }};border:1.5px solid #fff;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2019/09/logo_sepal_favicon_72.ico" alt="" style="width:13px;height:13px;border-radius:50%;background:#fff"></span>{{ l.n }}</button></sc-for></div>
+<span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8b95a3;margin-top:10px">Outras nações</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ locWorld }}" as="l" hint-placeholder-count="8"><button type="button" onClick="{{ l.pick }}" style="display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#f3efe8;font:500 14px 'Instrument Sans',sans-serif;cursor:pointer" style-hover="background:rgba(255,255,255,.1)"><span style="width:20px;height:20px;border-radius:6px;background:{{ l.c }};border:1.5px solid #fff;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2019/09/logo_sepal_favicon_72.ico" alt="" style="width:13px;height:13px;border-radius:50%;background:#fff"></span>{{ l.n }}</button></sc-for></div>
+<a href="https://sepal.org.br/missionarios/" style="margin-top:16px;align-self:flex-start;border:1px solid rgba(255,255,255,.3);padding:14px 24px;border-radius:999px;font-weight:600;font-size:14px" style-hover="background:#fff;color:#0a111d">Conheça os {{ missCount }} missionários →</a>
+</div>
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.35)">
+<div style="height:6px;background:{{ sel.c }}"></div>
+<div style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<button type="button" onClick="{{ clearSel }}" style="align-self:flex-start;background:none;border:0;padding:0;color:#a9b1bd;font:500 14px 'Instrument Sans',sans-serif;cursor:pointer">← Todos os locais</button>
+<div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:12px;background:{{ sel.c }};border:2px solid #fff;display:grid;place-items:center;flex:none"><img src="https://sepal.org.br/wp-content/uploads/2019/09/logo_sepal_favicon_72.ico" alt="" style="width:28px;height:28px;border-radius:50%;background:#fff"></span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:{{ sel.c }}">{{ sel.r }}</span><span style="font-family:'Archivo';font-weight:800;font-size:32px;line-height:1">{{ sel.n }}</span></div></div>
+<sc-if value="{{ sel.hidden }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:14px;align-items:center;padding:18px;border-radius:16px;background:rgba(255,255,255,.06)"><span style="width:40px;height:40px;border-radius:50%;background:#1c2e4c;display:grid;place-items:center;font-size:18px;flex:none">🔒</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:16px">Nome não pode ser exposto por segurança</span><span style="font-size:14px;color:#a9b1bd">Ore pelos missionários que servem nesta região.</span></div></div></sc-if>
+<sc-if value="{{ sel.hasMiss }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px;max-height:440px;overflow:auto;padding-right:4px">
+<sc-for list="{{ sel.m }}" as="mi" hint-placeholder-count="1"><div style="display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,255,255,.06)">
+<sc-if value="{{ mi.img }}" hint-placeholder-val="{{ false }}"><img src="{{ mi.img }}" alt="{{ mi.n }}" style="width:88px;height:88px;border-radius:20px;object-fit:cover;flex:none"></sc-if>
+<sc-if value="{{ mi.noImg }}" hint-placeholder-val="{{ true }}"><span style="width:52px;height:52px;border-radius:14px;background:{{ sel.c }};color:#0a111d;display:grid;place-items:center;font:800 20px 'Archivo',sans-serif;flex:none">{{ mi.ini }}</span></sc-if>
+<div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-weight:600;font-size:17px">{{ mi.n }}</span><span style="font-size:13px;color:#a9b1bd;word-break:break-word">{{ mi.sub }}</span>
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:4px;font-size:13px;font-weight:600"><a href="{{ mi.href }}" target="_blank" style="color:#ffb48a">Ver perfil →</a><sc-if value="{{ mi.doe }}" hint-placeholder-val="{{ false }}"><a href="{{ mi.doe }}" target="_blank" style="color:#ffb48a">Envie uma oferta →</a></sc-if></div></div>
+</div></sc-for>
+</div></sc-if>
+<sc-if value="{{ sel.empty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;color:#a9b1bd">A lista de missionários deste local será publicada em breve.</p></sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<section data-screen-label="Mobilização" style="position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background-image:url(https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-9.jpg);background-size:cover;background-position:center;background-attachment:fixed">
+<div style="position:absolute;inset:0;background:rgba(10,17,29,.6)"></div>
+<div data-reveal="1" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:28px;padding:80px 24px">
+<div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffb48a">(04) Programa de afiliação</div>
+<h2 style="margin:0;font-family:'Archivo';font-weight:900;font-stretch:120%;font-size:clamp(56px,11vw,190px);line-height:.85;letter-spacing:-.03em;text-shadow:0 0 30px rgba(10,17,29,.9),0 0 80px rgba(10,17,29,.7)">Caminhe<br>conosco!</h2>
+<a href="https://sepal.org.br/programa-de-afiliacao" style="background:#ff6a2b;color:#fff;padding:18px 32px;border-radius:999px;font-weight:600;font-size:16px" style-hover="background:#fff;color:#0a111d">Seja um missionário SEPAL</a>
+</div>
+</section>
+
+<section data-screen-label="Envolva-se" style="padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:48px">
+<div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff8a4c">(05) Envolva-se</div><h2 style="margin:0;font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:clamp(40px,6vw,88px);line-height:.9;letter-spacing:-.02em">Faça parte</h2></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+<sc-for list="{{ envolva }}" as="e" hint-placeholder-count="3">
+<a href="{{ e.href }}" onMouseMove="{{ tilt }}" onMouseLeave="{{ untilt }}" style="position:relative;height:520px;border-radius:22px;overflow:hidden;display:block;transition:transform .2s ease-out;transform-style:preserve-3d;color:#fff">
+<img src="{{ e.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,29,0) 30%,rgba(10,17,29,.9) 100%)"></div>
+<div style="position:absolute;left:28px;right:28px;bottom:28px;display:flex;flex-direction:column;gap:6px;transform:translateZ(50px);text-shadow:0 0 16px rgba(10,17,29,.95),0 0 40px rgba(10,17,29,.75)">
+<span style="font-size:15px;color:#d9d4cb">{{ e.k }}</span>
+<span style="font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:40px;line-height:1">{{ e.t }}</span>
+<span style="margin-top:14px;align-self:flex-start;background:#fff;color:#0a111d;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px">{{ e.cta }} →</span>
+</div>
+</a>
+</sc-for>
+</div>
+<div id="areas-sepal" style="position:relative;border-radius:28px;overflow:hidden;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:center">
+<img src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) blur(6px);transform:scale(1.1)">
+<div style="position:absolute;inset:0;background:#3b6ea8;mix-blend-mode:color"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,17,29,.92),rgba(10,17,29,.6))"></div>
+<div style="position:relative;display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+<span style="display:inline-flex;flex-direction:column;align-items:center;gap:5px;background:rgba(255,255,255,.95);border-radius:18px;padding:12px 18px 10px;box-shadow:0 10px 30px rgba(0,0,0,.35)"><span style="display:flex;align-items:center;gap:9px;white-space:nowrap"><sc-if value="{{ areasLogo.grid }}" hint-placeholder-val="{{ false }}"><span style="display:grid;grid-template-columns:repeat(2,18px);gap:3px"><span style="height:18px;border-radius:5px;background:#ff6a2b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/1.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3b6ea8;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/2.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#e0a400;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/3.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3fa66b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/5.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span></span></sc-if><sc-if value="{{ areasLogo.play }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;border-radius:8px;background:#039b9e;display:grid;place-items:center"><span style="width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px"></span></span></sc-if><span style="font:800 clamp(13px,1.3vw,18px) 'Archivo',sans-serif;color:#0a111d;letter-spacing:-.01em">{{ areasLogo.label }}</span></span><sc-if value="{{ areasLogo.sub }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'Instrument Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:{{ areasLogo.lc }}">{{ areasLogo.sub }}</span></sc-if></span>
+<h3 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:-.02em;font-size:clamp(38px,4.8vw,66px);line-height:1;text-shadow:0 0 24px rgba(10,17,29,.9)">Sua missão, nossa estrutura.</h3>
+<p style="margin:0;font-size:17px;line-height:1.6;color:#e6e1d8;max-width:520px;text-shadow:0 0 14px rgba(10,17,29,.95)">Qualquer missionário, de qualquer agência, pode contratar uma área da SEPAL. Você continua ligado à sua organização e conta com a experiência de mais de 60 anos da SEPAL no suporte a missionários.</p>
+<a href="https://sepal.org.br/contato/" style="background:#ff6a2b;color:#fff;padding:16px 26px;border-radius:999px;font-weight:600;font-size:15px" style-hover="background:#fff;color:#0a111d">Quero contratar uma área</a>
+</div>
+<div style="position:relative;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ areasServ }}" as="a" hint-placeholder-count="5"><div style="display:flex;gap:16px;align-items:center;padding:16px 20px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)"><span style="font-family:'Archivo';font-weight:700;font-size:14px;color:#ffb48a">{{ a.n }}</span><span style="font-size:17px;font-weight:500">{{ a.t }}</span></div></sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+<sc-for list="{{ frentes }}" as="f" hint-placeholder-count="3"><a href="{{ f.href }}" onMouseMove="{{ tilt }}" onMouseLeave="{{ untilt }}" style="position:relative;min-height:380px;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:24px;color:#fff;transition:transform .2s ease-out">
+<img src="{{ f.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) blur(3px);transform:scale(1.1)">
+<div style="position:absolute;inset:0;background:{{ f.tint }};mix-blend-mode:{{ f.blend }}"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,29,0) 30%,rgba(10,17,29,.9) 100%)"></div>
+<div style="position:relative;display:flex">
+<sc-if value="{{ f.lk }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;flex-direction:column;align-items:center;gap:5px;background:rgba(255,255,255,.95);border-radius:18px;padding:12px 18px 10px;box-shadow:0 10px 30px rgba(0,0,0,.35)"><span style="display:flex;align-items:center;gap:9px;white-space:nowrap"><sc-if value="{{ f.grid }}" hint-placeholder-val="{{ false }}"><span style="display:grid;grid-template-columns:repeat(2,18px);gap:3px"><span style="height:18px;border-radius:5px;background:#ff6a2b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/1.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3b6ea8;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/2.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#e0a400;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/3.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span><span style="height:18px;border-radius:5px;background:#3fa66b;display:grid;place-items:center"><img src="https://sepal.org.br/wp-content/uploads/2024/04/5.png" alt="" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1)"></span></span></sc-if><sc-if value="{{ f.play }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;border-radius:8px;background:#039b9e;display:grid;place-items:center"><span style="width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px"></span></span></sc-if><span style="font:800 clamp(13px,1.3vw,18px) 'Archivo',sans-serif;color:#0a111d;letter-spacing:-.01em">{{ f.label }}</span></span><sc-if value="{{ f.sub }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'Instrument Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:{{ f.lc }}">{{ f.sub }}</span></sc-if></span></sc-if>
+<sc-if value="{{ f.logo }}" hint-placeholder-val="{{ false }}"><span style="background:rgba(255,255,255,.95);border-radius:18px;padding:10px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35)"><img src="{{ f.logo }}" alt="{{ f.t }}" style="height:56px;display:block"></span></sc-if>
+</div>
+<div style="position:relative;display:flex;flex-direction:column;gap:8px;text-shadow:0 0 16px rgba(10,17,29,.95)">
+<sc-if value="{{ f.badge }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;background:#ff6a2b;color:#fff;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;text-shadow:none">Novo</span></sc-if>
+<span style="font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:-.02em;font-size:36px;line-height:1">{{ f.t }}</span>
+<span style="font-size:15px;line-height:1.5;color:#e6e1d8">{{ f.d }}</span>
+<span style="margin-top:8px;align-self:flex-start;background:#fff;color:#0a111d;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;text-shadow:none">{{ f.cta }} →</span>
+</div>
+</a></sc-for>
+</div>
+</section>
+
+<section data-screen-label="Conteúdo" style="padding:0 clamp(20px,4vw,56px) clamp(80px,10vw,140px);display:flex;flex-direction:column;gap:40px">
+<div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;border-top:1px solid #243149;padding-top:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff8a4c">(06) Conteúdo</div><h2 style="margin:0;font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:clamp(40px,6vw,88px);line-height:.9;letter-spacing:-.02em">Blog Sepal</h2></div>
+<a href="https://sepal.org.br/blog-sepal/" style="font-weight:600;border-bottom:1px solid;padding-bottom:3px">Ver tudo →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px">
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+<a href="{{ p.href }}" data-reveal="1" style="display:flex;flex-direction:column;gap:16px">
+<div style="border-radius:18px;overflow:hidden;aspect-ratio:16/10"><img src="{{ p.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.08)"></div>
+<span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#ff8a4c">{{ p.k }}</span>
+<span style="font-family:'Archivo';font-weight:600;font-size:22px;line-height:1.25;text-wrap:pretty">{{ p.t }}</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section data-screen-label="Parceiros" style="padding:64px 0;background:#f3efe8;color:#0a111d;overflow:hidden;display:flex;flex-direction:column;gap:32px">
+<div style="padding:0 clamp(20px,4vw,56px);display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap"><span style="font-family:'Archivo';font-weight:800;font-stretch:110%;font-size:clamp(28px,3.4vw,48px);letter-spacing:-.02em">Ministérios dos nossos missionários</span><a href="https://sepal.org.br/missionarios/" style="font-weight:600;color:#0a111d">Conheça os missionários →</a></div>
+<div ref="{{ marqRef }}" style="display:flex;gap:16px;width:max-content;will-change:transform">
+<sc-for list="{{ logos }}" as="l" hint-placeholder-count="10"><div style="width:180px;height:110px;flex:none;background:#fff;border-radius:16px;display:grid;place-items:center;padding:18px"><img src="{{ l }}" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></div></sc-for>
+</div>
+</section>
+
+<footer data-screen-label="Rodapé" style="position:relative;overflow:hidden;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px) 40px">
+<img data-depth="0.15" src="https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-11.jpg" alt="" style="position:absolute;left:0;top:-15%;width:100%;height:130%;object-fit:cover">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,#0a111d 0%,rgba(10,17,29,.78) 40%,rgba(10,17,29,.95) 100%)"></div>
+<div style="position:relative;display:flex;flex-direction:column;gap:64px">
+<h2 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:-.02em;font-size:clamp(38px,6vw,100px);line-height:1;letter-spacing:-.01em;text-shadow:0 0 30px rgba(10,17,29,.9),0 0 70px rgba(10,17,29,.7)">Servindo aos<br>que servem<span style="color:#ff6a2b">*</span></h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;font-size:15px;line-height:1.7;color:#c4cad3">
+<div style="display:flex;flex-direction:column"><span style="color:#fff;font-weight:600;margin-bottom:8px">Navegue</span><sc-for list="{{ menu }}" as="m" hint-placeholder-count="4"><a href="{{ m.href }}">{{ m.n }} / {{ m.t }}</a></sc-for></div>
+<div style="display:flex;flex-direction:column"><span style="color:#fff;font-weight:600;margin-bottom:8px">Endereço e contato</span><span>Rua Jandiatuba, 506 Nº Antigo 630</span><span>Cj 328 B Vila Andrade, São Paulo – SP</span><span>CEP 05716-150</span><span>(11) 99590-3381 · contato@sepal.org.br</span></div>
+<div style="display:flex;flex-direction:column;gap:14px"><span style="color:#fff;font-weight:600">Membros da OC Global Alliance</span><div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><img src="https://sepal.org.br/wp-content/uploads/2026/05/oci-stamp-white-350x350-1-150x150.png" alt="OC Global Alliance" style="height:64px"><img src="https://sepal.org.br/wp-content/uploads/2020/09/logo-amtb-200x82.png" alt="AMTB" style="height:40px"><img src="https://sepal.org.br/wp-content/uploads/2020/09/alianca_white-300x96.png" alt="ACEB" style="height:40px"></div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.15);padding-top:28px;font-size:14px;color:#a9b1bd">
+<img src="https://sepal.org.br/wp-content/uploads/2026/03/Logo-sepal-principal-braco-e1772831438403.png" alt="SEPAL" style="height:36px">
+<div style="display:flex;gap:24px"><a href="https://www.instagram.com/missaosepal/">Instagram</a><a href="https://www.youtube.com/c/MissaoSepal/">YouTube</a><a href="https://www.facebook.com/MissaoSepal/">Facebook</a><a href="https://sepal.org.br/area-missionario/">Área do Missionário</a></div>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Montagem A&quot;,&quot;Montagem B&quot;],&quot;default&quot;:&quot;Montagem B&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Topo&quot;},&quot;ringSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.12,&quot;min&quot;:0,&quot;max&quot;:0.6,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Interações&quot;},&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interações&quot;}}">
+class Component extends DCLogic {
+  heroRef = React.createRef(); heroTitle = React.createRef();
+  ringRef = React.createRef(); marqRef = React.createRef();
+  angle = 0; drag = null; mx = 0;
+  componentDidMount() {
+    const tick = () => {
+      if (!this.drag) this.angle -= (this.props.ringSpeed ?? 0.12);
+      if (this.ringRef.current) this.ringRef.current.style.transform = `scale(${innerWidth < 760 ? 0.62 : 1}) translateZ(-520px) rotateX(-6deg) rotateY(${this.angle}deg)`;
+      const m = this.marqRef.current;
+      if (m) { this.mx -= 0.6; const half = m.scrollWidth / 2; if (-this.mx >= half) this.mx += half; m.style.transform = `translateX(${this.mx}px)`; }
+      const h = this.heroRef.current;
+      if (h) h.querySelectorAll('[data-col]').forEach(el => { el._y = (el._y || 0) - 0.35 * (+el.dataset.col); const half = el.scrollHeight / 2; if (half) { if (-el._y >= half) el._y += half; if (el._y > 0) el._y -= half; } el.style.transform = `translateY(${el._y}px)`; });
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+    this.onResize = () => this.forceUpdate();
+    this.mq = matchMedia('(max-width: 759px)'); this.mq.addEventListener('change', this.onResize);
+    this.mq2 = matchMedia('(max-width: 1023px)'); this.mq2.addEventListener('change', this.onResize);
+    this.poll = setInterval(() => { const a = matchMedia('(max-width: 759px)').matches, b = matchMedia('(max-width: 1023px)').matches; if (a !== this._lastM || b !== this._lastMg) this.forceUpdate(); }, 400);
+    this.t1 = setTimeout(this.onResize, 300); this.t2 = setTimeout(this.onResize, 1000);
+    addEventListener('resize', this.onResize); this.onResize();
+    requestAnimationFrame(this.onResize); addEventListener('load', this.onResize);
+    this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement);
+    window.SEPAL_LOCAIS = this.locais();
+    this.onLoc = e => {
+      this.setState({ activeLoc: e.detail });
+      const el = document.querySelector('sepal-globe'); if (!el || !el.showCards || !e.detail) return;
+      const v = this.locVals().sel; if (!v || !v.n) return;
+      const items = v.hidden ? [{ n: 'Nome não pode ser exposto por segurança', lock: true }] : v.m;
+      clearTimeout(this.cardT); this.cardT = setTimeout(() => el.showCards(items, v.c), 650);
+    };
+    document.addEventListener('sepal-local', this.onLoc);
+    this.onScroll = () => {
+      const vh = innerHeight;
+      document.querySelectorAll('[data-depth]').forEach(el => {
+        const r = el.parentElement.getBoundingClientRect();
+        const d = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.depth);
+        el.style.transform = `translate3d(0,${d}px,0)`;
+      });
+    };
+    const show = el => { el.style.opacity = 1; el.style.transform = 'none'; el.dataset.shown = '1'; };
+    this.pending = [];
+    if (this.props.reveal ?? true) {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (el.getBoundingClientRect().top < innerHeight * 0.9) return;
+        el.style.opacity = 0; el.style.transform = 'translateY(40px)';
+        el.style.transition = 'opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)';
+        this.pending.push(el);
+      });
+    }
+    this.checkReveal = () => {
+      this.pending = this.pending.filter(el => { if (el.getBoundingClientRect().top < innerHeight * 0.9) { show(el); return false; } return true; });
+    };
+    const base = this.onScroll;
+    this.onScroll = () => { base(); this.checkReveal(); };
+    addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    this.onScroll();
+    this.fallback = setTimeout(() => { this.pending.forEach(show); this.pending = []; }, 6000);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); removeEventListener('scroll', this.onScroll); removeEventListener('resize', this.onResize); this.ro && this.ro.disconnect(); this.mq && this.mq.removeEventListener('change', this.onResize); clearTimeout(this.t1); clearInterval(this.poll); clearTimeout(this.t2); document.removeEventListener('scroll', this.onScroll, true); clearTimeout(this.fallback); document.removeEventListener('sepal-local', this.onLoc); }
+  state = { dd: false, activeLoc: null, mobile: typeof innerWidth !== 'undefined' && innerWidth < 760, menuOpen: false };
+  locais() {
+    const C = { br: '#ff6a2b', eu: '#4fb3ff', af: '#ffd166', am: '#7bd389', as: '#c58bff' };
+    const BR = 'Equipe SEPAL servindo pastores, líderes e igrejas locais.', EX = 'Missionários SEPAL apoiando a igreja local nesta região.';
+    return [
+      ['São Paulo', 'Brasil · Sede', -23.55, -46.63, 'br'], ['Curitiba', 'Brasil', -25.43, -49.27, 'br'], ['Rio de Janeiro', 'Brasil', -22.91, -43.17, 'br'], ['Londrina', 'Brasil', -23.31, -51.16, 'br'],
+      ['Vitória', 'Brasil', -20.32, -40.34, 'br'], ['Brasília', 'Brasil', -15.79, -47.88, 'br'], ['Natal', 'Brasil', -5.79, -35.21, 'br'], ['Caruaru', 'Brasil', -8.28, -35.98, 'br'],
+      ['Oriente Médio', 'Ásia', 31.9, 35.9, 'as'], ['Ásia', 'Ásia', 22, 96, 'as'], ['Espanha', 'Europa', 40.42, -3.7, 'eu'], ['Itália', 'Europa', 41.9, 12.5, 'eu'], ['Portugal', 'Europa', 38.72, -9.14, 'eu'], ['Romênia', 'Europa', 44.43, 26.1, 'eu'],
+      ['África do Sul', 'África', -26.2, 28.05, 'af'], ['Moçambique', 'África', -25.97, 32.57, 'af'], ['Guatemala', 'América Central', 14.63, -90.5, 'am'], ['Belize', 'América Central', 17.25, -88.77, 'am'], ['Chile', 'América do Sul', -33.45, -70.67, 'am']
+    ].map(([n, r, lat, lng, k]) => ({ n, r, lat, lng, c: C[k], br: k === 'br' }));
+  }
+  ddOpen = () => { clearTimeout(this.ddT); this.setState({ dd: true }); };
+  ddClose = () => { this.ddT = setTimeout(() => this.setState({ dd: false }), 150); };
+  heroMove = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    e.currentTarget.querySelectorAll('[data-hd]').forEach(el => { const d = +el.dataset.hd; el.style.translate = `${x * d}px ${y * d}px`; });
+    if (this.heroTitle.current) this.heroTitle.current.style.transform = `perspective(1200px) rotateY(${x * 6}deg) rotateX(${y * -5}deg)`;
+  };
+  ringDown = e => {
+    this.drag = { x: e.clientX, a: this.angle };
+    const move = ev => { this.angle = this.drag.a + (ev.clientX - this.drag.x) * 0.25; };
+    const up = () => { this.drag = null; removeEventListener('pointermove', move); removeEventListener('pointerup', up); };
+    addEventListener('pointermove', move); addEventListener('pointerup', up);
+  };
+  tilt = e => {
+    const el = e.currentTarget, r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(900px) rotateX(${y * -10}deg) rotateY(${x * 12}deg) scale(1.02)`;
+  };
+  untilt = e => { e.currentTarget.style.transform = ''; };
+  rand() {
+    if (this._rand) return this._rand;
+    const names = 'Abner e Elza Morillas|Adriano Araujo|Alex e Bárbara Ribeiro|Andre e Adelina Malombe|Andréa Vargas|Bruno e Isabelle Saffier|Bruno e Mariana Corrêa|Caleb e Noemi Marques|Carlos e Debora Melo|Caroline Santos|Daniel e Luciana Schimenes|Daniel e Shirley Porto|Daniel Vargas e Ilaene Schuler|Danilo Santos e Thaís Gilles|David e Anneleise Silva|David e Selma Sales|Diogo e Débora Militão|Elicélio e Sylvia Souza|Ely e Lídia Oliveira|Emilly Nunes|Enoque e Simone Ribeiro|Evana Caixeta|Eveny Bourguignon de Araujo|Fábio e Viviane Ito|Fernando e Rebeca Drummond|Guilherme e Lara Cain|Hercules e Roodineya Andrade|Hernan e Thaís Duarte|Herodiel e Marineide Bastos|Jasiel e Ivone Botelho|Jorge e Virgínia Carvalho|Josilene Vicente|Josué e Raquel Campanhã|Julio e Juliana Lucareviski|Junior e Janaína Camilo|Leandro e Lilian Santos|Lincoln e Celma Miyasaka|Lourenço e Givanilda Rega|Lucas e Luciana Fontes|Luiz Carlos e Arlete Castro|Luiz e Sara Santos|Magaly da Silva|Marc e Teresa Pinneo|Marcelo e Marjorie Ferreira|Marcos e Rosângela Amado|Marcos e Rosélia Quaresma|Maria da Conceição Antônio|Mila Ghil|Nelson Domingues e Vera Sacramento|Nidovaldo e Helaine Gonçalves|Oswaldo e Sirley Prado|Paulinho e Adriana Degáspari|Paulo José e Érica Garbino|Paulo Moreira|Penha Sales|Rafael e Nayara Migowski|Ricardo Barbosa e Maria Cristina|Rodrigo e Adriana Falsetti|Rodrigo e Cristiane Gomes|Rodrigo e Sarah Tinoco|Roger e Ludmila Yoshimura|Ruben e Juanna Quinaluisa|Rubens Luz|Rubens Muzio|Sebastião Jr e Ellen Alves|Sergio e Magali Leoto|Steve e Anna Griffiths|Sueli Mota|Thales Bastos dos Santos|Vacilius e Mara Santos|Valerie Gill|Vinicius e Francis Vilas Boas|William e Ester Carletti'.split('|');
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = names.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [names[i], names[j]] = [names[j], names[i]]; }
+    const locs = this.locais().filter(l => l.n !== 'Ásia'), out = {};
+    names.forEach((n, i) => { const k = locs[i % locs.length].n; (out[k] = out[k] || []).push({ n, sub: 'Missionário(s) SEPAL', href: 'https://sepal.org.br/missionarios/' }); });
+    return (this._rand = out);
+  }
+  locVals() {
+    const L = this.locais(), a = this.state.activeLoc;
+    const g = () => document.querySelector('sepal-globe');
+    const M = 'https://sepal.org.br/missionarios/';
+    const U = 'https://sepal.org.br/wp-content/uploads/', D = 'https://sistema.sepal.tech/doeagora/';
+    const MISS = {
+      'Curitiba': [{ n: 'Cassiano e Eugênia Luz', img: U + '2025/01/IMG_3133_Eugenia-Luz-scaled.jpg', sub: 'Cassiano é Diretor Executivo da SEPAL Brasil. Eugênia cuida da curadoria de conteúdo do Martureo.', href: M + 'cassiano-e-eugenia-luz/', doe: D + 'cassiano_e_eugenia_luz' }],
+      'Itália': [{ n: 'René e Sarah Breuel', img: U + '2024/04/Rene-e-Sarah.jpeg', sub: 'Implantação e pastoreio de igrejas na Itália (Igreja Hopera, Roma) e movimento de jovens Revive Europe.', href: M + 'rene-e-sarah-breuel/', doe: D + 'rene_e_sarah_breuel' }],
+      'Espanha': [{ n: 'Elizabeth Bourguignon de Araújo', img: U + '2026/02/projeto-Las-Bourguignon_Elizabeth-Bourguigno-e1771355277691-300x300.jpeg', sub: 'Líder da equipe Sepal Transcultural na Espanha. Vive em Oviedo.', href: M + 'beth-bourguignon/', doe: D + 'elizabeth_bourguignon_de_araujo' }],
+      'Moçambique': [{ n: 'Tiago e Suzana Silva', img: U + '2024/04/Tiago-e-Suzana.jpeg', sub: 'Discipulado e mentoria de pastores e líderes moçambicanos.', href: M + 'tiago-e-suzana/', doe: D + 'tiago_e_suzana_silva' }],
+      'Belize': [{ n: 'Jonatas e Natasha da Silva', img: U + '2025/10/Jonatas-e-Natasha-da-Silva.jpeg', sub: 'jonatas.silva@sepal.org.br · natasha.silva@sepal.org.br', href: M + 'jonatas-e-natasha-da-silva/', doe: 'http://sistema.sepal.tech/doeagora/jonatas_e_natasha_da_silva' }]
+    };
+    const HIDDEN = { 'Ásia': true };
+    const pick = l => () => { const el = g(); if (el && el.select) el.select(l.n); else this.setState({ activeLoc: l.n }); };
+    const map = l => ({ ...l, pick: pick(l) });
+    let sel = null;
+    const found = L.find(l => l.n === a);
+    if (found) {
+      const m = [...(MISS[a] || []), ...(this.rand()[a] || [])].map(x => ({ ...x, noImg: !x.img, doe: x.doe || false, img: x.img || false, ini: x.n.split(' ').filter(w => w.length > 2).slice(0, 2).map(w => w[0]).join('') }));
+      sel = { ...found, m, hidden: !!HIDDEN[a], hasMiss: m.length > 0, empty: !HIDDEN[a] && !m.length };
+    }
+    return { locBR: L.filter(l => l.br).map(map), locWorld: L.filter(l => !l.br).map(map), missCount: 78,
+      sel: sel || {}, hasSel: !!sel, chipsDisplay: sel ? 'none' : 'flex',
+      clearSel: () => { const el = g(); if (el && el.clear) el.clear(); this.setState({ activeLoc: null }); },
+      locSummary: '78 missionários e famílias, em 8 cidades do Brasil e 11 nações e regiões do mundo.' };
+  }
+  brandVals() {
+    const m = window.matchMedia('(max-width: 759px)').matches, mg = window.matchMedia('(max-width: 1023px)').matches;
+    this._lastM = m; this._lastMg = mg;
+    const P = i => `https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-${i}.jpg`;
+    return {
+      headerCols: m ? '1fr auto' : '1fr auto 1fr', navDisplay: m ? 'none' : 'flex', desktopInline: m ? 'none' : 'flex', burgerDisplay: m ? 'flex' : 'none',
+      menuOpen: !!this.state.menuOpen, openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }),
+      menuAll: [
+        { n: '01', t: 'Sobre', href: 'https://sepal.org.br/quem-somos/' }, { n: '02', t: 'Missionários', href: 'https://sepal.org.br/missionarios/' },
+        { n: '03', t: 'Conteúdo', href: 'https://sepal.org.br/blog-sepal/' }, { n: '04', t: 'Envolva-se', href: 'https://sepal.org.br/envolva-se/' }
+      ],
+      globeCols: mg ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,440px)', globeJustify: mg ? 'center' : 'end', panelOrder: mg ? '0' : '-1', panelMinH: mg ? '0' : '460px',
+      areasLogo: { label: 'Áreas Sepal', grid: true, play: false, sub: 'novo', lc: '#ff6a2b' },
+      areasServ: ['Planejamento e Aferição de Impacto Ministerial', 'Suporte Administrativo e Financeiro', 'Tecnologia e Inovação', 'Comunicação e Marketing', 'Cuidado Integral e Mentoria'].map((t, i) => ({ t, n: '0' + (i + 1) })),
+      frentes: [
+        { t: 'SEPAL Digital', d: 'Plataforma de cursos online para desenvolvimento pessoal e profissional.', cta: 'Acessar cursos', href: 'https://sepaldigital.com/', img: P(11), tint: '#039b9e', blend: 'multiply', lk: false, logo: 'assets/sepal-digital.png', badge: false },
+        { t: 'Áreas Sepal', d: 'Qualquer missionário, de qualquer agência, pode contratar um serviço da SEPAL.', cta: 'Conheça as áreas', href: '#areas-sepal', img: P(2), tint: '#ff6a2b', blend: 'multiply', lk: true, label: 'Áreas Sepal', grid: true, play: false, sub: 'novo', lc: '#ff6a2b', logo: false, badge: true },
+        { t: 'Casa Conosco', d: 'Acolhimento, cuidado e descanso para líderes cristãos e suas famílias, em Atibaia/SP.', cta: 'Consulte disponibilidade', href: 'https://sepal.org.br/casa/', img: 'https://sepal.org.br/casa/wp-content/uploads/2026/04/IMG_3546-1.jpg', tint: '#f3c9a8', blend: 'multiply', lk: false, logo: 'https://sepal.org.br/casa/wp-content/uploads/2024/07/cropped-vertical-gray-270x270.png', badge: false }
+      ]
+    };
+  }
+  heroVals() {
+    const P = i => `https://sepal.org.br/wp-content/uploads/2026/09/photogrid-26-09-${i}.jpg`;
+    const CASA = n => `https://sepal.org.br/casa/wp-content/uploads/2026/04/${n}`;
+    const CAS2 = n => `https://sepal.org.br/casa/wp-content/uploads/2024/07/${n}`;
+    const casaLogo = 'assets/casa-conosco.png';
+    const T = { o: ['#ff6a2b', 'multiply'], b: ['#3b6ea8', 'color'], c: ['#f3c9a8', 'multiply'], p: ['#ff8a4c', 'multiply'] };
+    const sh = (src, t, extra) => { const o = { src, tint: T[t][0], blend: T[t][1], logo: false, label: false, grid: false, play: false, sub: false, lc: '', alt: '', ...extra }; const real = !(o.logo || o.label); return { ...o, tint: real ? o.tint : o.mono, blend: 'multiply', flt: real ? 'grayscale(1) contrast(1.05)' : o.col ? 'blur(3px) saturate(1.1)' : 'grayscale(1) contrast(1.15) blur(3px)', sc: real ? '1' : '1.12', tn: real || o.col ? '0' : '1' }; };
+    const DIG = { logo: 'assets/sepal-digital.png', alt: 'SEPAL Digital', mono: '#ffffff' }, AREAS = { mono: '#ffffff', label: 'Áreas Sepal', grid: true, sub: 'novo', lc: '#ff6a2b' };
+    const shapesA = [
+      sh(P(5), 'o', { x: '30%', y: '11%', w: 'clamp(120px,14vw,200px)', h: 'clamp(120px,14vw,200px)', rad: '50%', rot: '0deg', d: 18 }),
+      sh(CASA('IMG_3546-1.jpg'), 'c', { x: '3%', y: '58%', w: 'clamp(150px,17vw,250px)', h: 'clamp(150px,17vw,250px)', rad: '50%', rot: '0deg', d: -14, logo: casaLogo, alt: 'Casa Conosco', col: true }),
+      sh(P(3), 'o', { x: '6%', y: '14%', w: 'clamp(200px,22vw,320px)', h: 'clamp(200px,22vw,320px)', rad: '50%', rot: '6deg', d: 38, ...AREAS }),
+      sh(P(6), 'b', { x: '31%', y: '30%', w: 'clamp(150px,16vw,240px)', h: 'clamp(200px,22vw,330px)', rad: '999px 999px 18px 18px', rot: '-5deg', d: -26 }),
+      sh(P(8), 'b', { x: '14%', y: '50%', w: 'clamp(220px,26vw,380px)', h: 'clamp(120px,13vw,190px)', rad: '999px', rot: '-3deg', d: 52, ...DIG }),
+      sh(P(1), 'p', { x: '46%', y: '16%', w: 'clamp(110px,11vw,170px)', h: 'clamp(110px,11vw,170px)', rad: '28px', rot: '-10deg', d: -40 }),
+      sh(P(10), 'b', { x: '22%', y: '78%', w: 'clamp(150px,15vw,220px)', h: 'clamp(110px,10vw,150px)', rad: '18px 18px 999px 999px', rot: '8deg', d: 30 })
+    ];
+    const R = ['50%', '999px', '28px', '999px 999px 22px 22px', '22px 22px 999px 999px', '40px 4px 40px 4px'];
+    const H = ['220px', '300px', '180px', '260px', '200px', '240px'];
+    const col = (list, v, off) => {
+      const items = list.map((x, i) => ({ ...x, rad: R[(i + off) % R.length], h: H[(i * 2 + off) % H.length] }));
+      return { v, items: [...items, ...items] };
+    };
+    const colsB = [
+      col([sh(P(1), 'o'), sh(P(4), 'b'), sh(CASA('IMG_3544-1.jpg'), 'c', { logo: casaLogo, alt: 'Casa Conosco', col: true }), sh(P(7), 'p'), sh(P(9), 'b')], 1, 0),
+      col([sh(P(2), 'b'), sh(P(5), 'c', DIG), sh(P(8), 'o'), sh(CAS2('20240709_091334-scaled.webp'), 'b'), sh(P(11), 'p')], -1, 2),
+      col([sh(P(3), 'p'), sh(P(6), 'o', AREAS), sh(P(10), 'b'), sh(CAS2('IMG_5717-1-scaled.webp'), 'c'), sh(P(4), 'o')], 1, 4)
+    ];
+    const B = (this.props.heroStyle ?? 'Montagem B') === 'Montagem B';
+    return { shapesA, colsB, heroA: !B, heroB: B };
+  }
+  renderVals() {
+    const U = 'https://sepal.org.br/wp-content/uploads/';
+    const P = i => `${U}2026/09/photogrid-26-09-${i}.jpg`;
+    const areaT = ['Planejamento e Aferição de Impacto Ministerial','Suporte Administrativo e Financeiro','Tecnologia e Inovação','Comunicação e Marketing','Cuidado Integral e Mentoria','Credibilidade do SELO SEPAL'];
+    const bgs = [2, 4, 7, 10, 3, 1];
+    const areas = areaT.map((t, i) => ({ t, n: '0' + (i + 1), icon: `${U}2024/04/${i + 1}.png`, bg: P(bgs[i]), tf: `rotateY(${i * 60}deg) translateZ(440px)` }));
+    const partners = 'atletas-de-cristo missao-ximo missao-base jesus-net missao-mosaico igrejas-discipuladoras-2 descobrindo-a-esperanca hopera conversa-de-missoes omf casal-em-foco academia-aoristea fortalecendo-a-familia ministerio-pitstop cuidado-missionario-e-mobilizacao cmm martureo irmaos-com projeto-equador-andino conheca-me missao-esperanca eu-missionario associacao-vida-para-africa flam irmas-amigas the-silvas-in-africa euopna mevic jovens-da-verdade geracao-elo envisionar ser-e-conviver embrace-ministry movimento-vocare'.split(' ').map(n => `${U}2025/05/${n}.png`);
+    return {
+      heroRef: this.heroRef, heroTitle: this.heroTitle, ringRef: this.ringRef, marqRef: this.marqRef,
+      heroMove: this.heroMove, ringDown: this.ringDown, tilt: this.tilt, untilt: this.untilt,
+      menu: [
+        { n: '01', t: 'Sobre', href: 'https://sepal.org.br/quem-somos/' },
+        { n: '02', t: 'Missionários', href: 'https://sepal.org.br/missionarios/' },
+        { n: '03', t: 'Conteúdo', href: 'https://sepal.org.br/blog-sepal/' },
+        { n: '04', t: 'Envolva-se', href: 'https://sepal.org.br/envolva-se/' }
+      ],
+      areas,
+      envolva: [
+        { k: 'Invista em nossa causa', t: 'Seja um mantenedor', cta: 'Contribua', img: P(4), href: 'https://sepal.org.br/envolva-se/seja-um-mantenedor/' },
+        { k: 'Seja um missionário', t: 'Programa de afiliação', cta: 'Participe', img: P(7), href: 'https://sepal.org.br/programa-de-afiliacao' },
+        { k: 'Conheça os', t: 'Valores Sepal', cta: 'Conheça', img: P(10), href: 'https://sepal.org.br/quem-somos/' }
+      ],
+      posts: [
+        { k: 'Artigos', t: 'Especial NATAL: Jesus quem nos revela Deus.', img: U + '2024/12/BLOG-Jesus-quem-nos-revela-Deus-e1735068495189-700x441.png', href: 'https://sepal.org.br/2024/12/24/natal2024/' },
+        { k: 'Notícias', t: '#SEPALnoLausanne | SEPAL presente no 4º Congresso Lausanne', img: U + '2024/09/SEPALnoLausanne-ORE-Apresentacao-700x441.jpg', href: 'https://sepal.org.br/2024/09/21/sepal_no_lausanne4/' },
+        { k: 'Entrevistas', t: 'Quando a fé e considerada crime – Missões na Mídia', img: U + '2025/01/WhatsApp-Image-2025-01-11-at-10.49.24-e1736612306890-700x441.jpeg', href: 'https://sepal.org.br/2025/01/11/feconsideradocrime/' }
+      ],
+      logos: [...partners, ...partners],
+      menuMain: [
+        { n: '01', t: 'Sobre', href: 'https://sepal.org.br/quem-somos/' },
+        { n: '02', t: 'Missionários', href: 'https://sepal.org.br/missionarios/' },
+        { n: '03', t: 'Conteúdo', href: 'https://sepal.org.br/blog-sepal/' }
+      ],
+      
+      dd: this.state.dd, ddOpen: this.ddOpen, ddClose: this.ddClose, ddBg: this.state.dd ? 'rgba(255,255,255,.16)' : 'transparent',
+      envolvaMenu: [
+        { t: 'Contribua', s: 'Seja um mantenedor da SEPAL', href: 'https://sepal.org.br/envolva-se/seja-um-mantenedor/', color: '#ff8a4c' },
+        { t: 'Seja um missionário SEPAL', s: 'Programa de afiliação', href: 'https://sepal.org.br/programa-de-afiliacao', color: '#fff' },
+        { t: 'Áreas Sepal · novo', s: 'Para missionários de qualquer agência', href: '#areas-sepal', color: '#ff8a4c' },
+        { t: 'SEPAL Digital', s: 'Cursos online', href: 'https://sepaldigital.com/', color: '#5fd0d2' },
+        { t: 'Casa Conosco', s: 'Acolhimento e descanso em Atibaia/SP', href: 'https://sepal.org.br/casa/', color: '#fff' },
+        { t: 'Eventos', s: 'Encontro SEPAL e Semana de Cuidado', href: 'https://encontro.sepal.org.br/', color: '#fff' }
+      ],
+      ...this.locVals(),
+      ...this.heroVals(),
+      ...this.brandVals()
+    };
+  }
+}
+</script>
+</body>
+</html>
