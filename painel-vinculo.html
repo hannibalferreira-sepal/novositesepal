@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0b0f17}a{color:#ff8a4c}a:hover{color:#ffb38f}</style>
+</helmet>
+<div style="min-height:100vh;background:#0b0f17;color:#e8ebf1;font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.45">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:16px clamp(16px,3vw,32px);border-bottom:1px solid rgba(255,255,255,.08);background:#0e1420">
+<img src="https://sepal.org.br/wp-content/uploads/2026/03/Logo-sepal-principal-braco-e1772831438403.png" alt="SEPAL" style="height:72px;width:auto;display:block">
+<div style="display:flex;flex-direction:column;gap:2px;padding-left:28px;border-left:1px solid rgba(255,255,255,.14)">
+<span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;letter-spacing:.02em;text-transform:uppercase">Painel Vínculo</span>
+<span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8b95a8">Uso da Área Missionária</span>
+</div>
+<div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<a href="area-missionaria.html" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(255,138,76,.5);font-size:12px;font-weight:600;color:#ff8a4c;text-decoration:none">← Área Missionária</a>
+<span style="padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px;color:#a9b1bd">Atualizado: 15/10/2026 às 08:00</span>
+<span style="display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px"><span style="width:7px;height:7px;border-radius:50%;background:#3ddc84"></span>Usuário<span style="padding:2px 8px;border-radius:999px;background:rgba(61,220,132,.15);color:#3ddc84;font-size:10px;font-weight:600;letter-spacing:.08em">VIEWER</span></span>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start">
+
+<nav style="flex:1 1 200px;max-width:100%;display:flex;flex-wrap:wrap;flex-direction:row;gap:8px;padding:20px 16px;box-sizing:border-box">
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="4"><button type="button" onClick="{{ n.go }}" style="flex:1 1 140px;text-align:left;padding:12px 14px;border-radius:10px;border:0;background:{{ n.bg }};color:{{ n.color }};font:600 14px 'Instrument Sans',sans-serif;cursor:pointer">{{ n.t }}</button></sc-for>
+</nav>
+
+<main style="flex:6 1 640px;min-width:0;padding:24px clamp(16px,3vw,32px) 64px;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+
+<section style="display:{{ showGeral }};flex-direction:column;gap:28px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(32px,4vw,48px);line-height:1">Índice de Vínculo</h1>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+<sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4"><div style="padding:18px 20px;border-radius:12px;background:#121826;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8b95a8">{{ k.label }}</span><span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:30px;color:{{ k.c }}">{{ k.val }}</span><span style="font-size:12px;color:#6c768a">{{ k.sub }}</span></div></sc-for>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:15px;font-weight:600;color:#c9d0dc">Comparar {{ roleLabel }}</h2>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+<div style="min-width:760px;background:#121826">
+<div style="display:grid;grid-template-columns:{{ csCols }};gap:8px;padding:12px 16px;font-size:12px;color:#8b95a8;border-bottom:1px solid rgba(255,255,255,.08)"><sc-for list="{{ csHead }}" as="h" hint-placeholder-count="8"><span>{{ h }}</span></sc-for></div>
+<sc-for list="{{ csRows }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:{{ csCols }};gap:8px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.05)"><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="8"><span style="color:{{ c.c }};font-weight:{{ c.w }}">{{ c.t }}</span></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><input type="search" value="{{ q }}" onInput="{{ onQ }}" placeholder="Buscar missionário" style="flex:1 1 240px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#121826;color:#e8ebf1;font:14px 'Instrument Sans',sans-serif"><button type="button" onClick="{{ clear }}" style="padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:transparent;color:#c9d0dc;font:500 13px 'Instrument Sans',sans-serif;cursor:pointer">Limpar filtros</button></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:start">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;font-weight:600;color:#c9d0dc">{{ f.label }}</span>
+<select value="{{ f.cur }}" onChange="{{ f.change }}" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#121826;color:#e8ebf1;font:500 14px 'Instrument Sans',sans-serif;cursor:pointer"><sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}">{{ o.t }}</option></sc-for></select></div></sc-for>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:12px;color:#6c768a">{{ listCount }}</span>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+<div style="min-width:880px;background:#121826">
+<div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .9fr .9fr .8fr .9fr .9fr .8fr .9fr;gap:8px;padding:12px 16px;font-size:12px;color:#8b95a8;border-bottom:1px solid rgba(255,255,255,.08)"><sc-for list="{{ listHead }}" as="h" hint-placeholder-count="10"><span>{{ h }}</span></sc-for></div>
+<sc-for list="{{ listRows }}" as="r" hint-placeholder-count="10"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .9fr .9fr .8fr .9fr .9fr .8fr .9fr;gap:8px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.05)"><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="10"><span style="color:{{ c.c }};font-weight:{{ c.w }}">{{ c.t }}</span></sc-for></div></sc-for>
+</div></div>
+<span style="font-size:12px;font-style:italic;color:#6c768a">Serviços 30d = quantas áreas de apoio o missionário usou nos últimos 30 dias (0 a 4): planejamento, administrativo e financeiro, tecnologia e cuidado integral. Dados fictícios de demonstração.</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<h2 style="margin:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(16px,2vw,20px);letter-spacing:.06em;text-transform:uppercase">{{ chartTitle }}</h2>
+<div style="padding:12px;border-radius:12px;background:#121826;border:1px solid rgba(255,255,255,.08)">
+<svg viewBox="0 0 1000 350" style="display:block;width:100%;height:auto" role="img" aria-label="{{ chartTitle }}">
+<sc-for list="{{ gridY }}" as="g" hint-placeholder-count="6"><g><line x1="56" x2="990" y1="{{ g.y }}" y2="{{ g.y }}" stroke="rgba(255,255,255,.08)"></line><text x="48" y="{{ g.ty }}" text-anchor="end" fill="#8b95a8" font-size="11">{{ g.t }}</text></g></sc-for>
+<sc-for list="{{ gridX }}" as="g" hint-placeholder-count="10"><g><line x1="{{ g.x }}" x2="{{ g.x }}" y1="12" y2="300" stroke="rgba(255,255,255,.06)"></line><text x="{{ g.x }}" y="318" text-anchor="middle" fill="#8b95a8" font-size="11">{{ g.t }}</text></g></sc-for>
+<sc-for list="{{ lines }}" as="l" hint-placeholder-count="20"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.4" stroke-opacity=".6" stroke-linejoin="round"></path></sc-for>
+<text x="523" y="344" text-anchor="middle" fill="#c9d0dc" font-size="12">{{ xAxis }}</text>
+</svg>
+</div>
+</div>
+</section>
+
+<section style="display:{{ showHist }};flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(32px,4vw,48px);line-height:1">Análise Histórica</h1>
+<span style="color:#8b95a8">Como o índice e o risco dos missionários evoluíram até a saída (desativações dos últimos 14 dias).</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+<sc-for list="{{ histKpis }}" as="k" hint-placeholder-count="3"><div style="padding:16px 20px;border-radius:12px;background:#121826;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8b95a8">{{ k.label }}</span><span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;color:{{ k.c }}">{{ k.val }}</span><span style="font-size:12px;color:#6c768a">{{ k.sub }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<h2 style="margin:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(16px,2vw,20px);letter-spacing:.06em;text-transform:uppercase">Risco de saída × dias até a saída</h2>
+<div style="padding:12px;border-radius:12px;background:#121826;border:1px solid rgba(255,255,255,.08)">
+<svg viewBox="0 0 1000 350" style="display:block;width:100%;height:auto" role="img" aria-label="Risco de saída por dias até a saída">
+<sc-for list="{{ gridY }}" as="g" hint-placeholder-count="6"><g><line x1="56" x2="990" y1="{{ g.y }}" y2="{{ g.y }}" stroke="rgba(255,255,255,.08)"></line><text x="48" y="{{ g.ty }}" text-anchor="end" fill="#8b95a8" font-size="11">{{ g.t }}</text></g></sc-for>
+<sc-for list="{{ histGridX }}" as="g" hint-placeholder-count="10"><g><line x1="{{ g.x }}" x2="{{ g.x }}" y1="12" y2="300" stroke="rgba(255,255,255,.06)"></line><text x="{{ g.x }}" y="318" text-anchor="middle" fill="#8b95a8" font-size="11">{{ g.t }}</text></g></sc-for>
+<sc-for list="{{ histLines }}" as="l" hint-placeholder-count="14"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.6" stroke-opacity=".75" stroke-linejoin="round"></path></sc-for>
+<text x="523" y="344" text-anchor="middle" fill="#c9d0dc" font-size="12">Quantidade de dias até a saída (0 = saída)</text>
+</svg>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:15px;font-weight:600;color:#c9d0dc">{{ histCount }}</h2>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+<div style="min-width:820px;background:#121826">
+<div style="display:grid;grid-template-columns:1.3fr 1fr .9fr 1fr .9fr .9fr 1fr .9fr;gap:8px;padding:12px 16px;font-size:12px;color:#8b95a8;border-bottom:1px solid rgba(255,255,255,.08)"><sc-for list="{{ histHead }}" as="h" hint-placeholder-count="8"><span>{{ h }}</span></sc-for></div>
+<sc-for list="{{ histRows }}" as="r" hint-placeholder-count="14"><div style="display:grid;grid-template-columns:1.3fr 1fr .9fr 1fr .9fr .9fr 1fr .9fr;gap:8px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.05)"><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="8"><span style="color:{{ c.c }};font-weight:{{ c.w }}">{{ c.t }}</span></sc-for></div></sc-for>
+</div></div></div>
+</section>
+
+<section style="display:{{ showDoc }};flex-direction:column;gap:20px;max-width:880px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(32px,4vw,48px);line-height:1">Documentação</h1>
+<sc-for list="{{ docs }}" as="d" hint-placeholder-count="6"><div style="display:flex;flex-direction:column;gap:10px"><h2 style="margin:8px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;color:#fff">{{ d.h }}</h2>
+<sc-for list="{{ d.p }}" as="p" hint-placeholder-count="2"><p style="margin:0;color:#c9d0dc;text-wrap:pretty">{{ p }}</p></sc-for>
+<sc-if value="{{ d.hasRows }}" hint-placeholder-val="{{ false }}"><div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)"><div style="min-width:520px;background:#121826">
+<sc-for list="{{ d.rows }}" as="r" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:{{ r.cols }};gap:12px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);font-weight:{{ r.w }};color:{{ r.color }}"><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="3"><span>{{ c }}</span></sc-for></div></sc-for>
+</div></div></sc-if></div></sc-for>
+<span style="margin-top:12px;font-size:12px;color:#6c768a">Painel Vínculo · v0.1 (protótipo) · esta página reflete os pesos provisórios e o modelo planejado.</span>
+</section>
+
+<section style="display:{{ showTec }};flex-direction:column;gap:20px;max-width:880px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(32px,4vw,48px);line-height:1">Detalhes técnicos</h1>
+<sc-for list="{{ tecs }}" as="d" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><h2 style="margin:8px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;color:#fff">{{ d.h }}</h2>
+<sc-for list="{{ d.p }}" as="p" hint-placeholder-count="2"><p style="margin:0;color:#c9d0dc;text-wrap:pretty">{{ p }}</p></sc-for></div></sc-for>
+</section>
+
+</main>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'geral', role: 'cs', plan: 'Todos', origem: 'Todas', metric: 'risco', cls: 'Todas', cs: 'Todos', ld: 'Todos', q: '' };
+  G = '#3ddc84'; Y = '#ffb020'; R = '#ff5470'; M = '#c9d0dc';
+  data() {
+    if (this._d) return this._d;
+    let s = 11; const r = () => (s = s * 16807 % 2147483647) / 2147483647;
+    const CS = ['CS 1', 'CS 2', 'CS 3', 'CS 4', 'CS 5'], LD = ['Líder 1', 'Líder 2', 'Líder 3', 'Líder 4'], out = [];
+    for (let i = 1; i <= 160; i++) {
+      const late = r() < 0.13, ten = r() * 6, ac = Math.floor(r() * 7), sv = Math.floor(r() * 5);
+      const ev = r() < 0.4, so = r() < 0.5, ca = r() < 0.35, plano = r() < 0.4 ? 'Completo' : 'Individual';
+      const tp = ten < 1 ? 0 : ten < 2 ? 4 : ten < 4 ? 9.6 : 16;
+      const score = Math.round((late ? 0 : 35) + tp + 15 * Math.min(ac, 4) / 4 + 13 * Math.min(sv, 3) / 3 + (ev ? 9 : 0) + (so ? 8 : 0) + (ca ? 4 : 0));
+      let risk = 100 / (1 + Math.exp((score - 38) / 9)) + (r() - 0.5) * 8; risk = Math.max(1, Math.min(99, risk));
+      out.push({ n: 'Missionário ' + String(i).padStart(3, '0'), plano, origem: r() < 0.45 ? 'SEPAL' : 'Outra agência', cs: CS[Math.floor(r() * 5)], ld: LD[Math.floor(r() * 4)], ten, ac, sv, ev, so, ca, score, risk, u: r(), ph: r() * 6, mens: plano === 'Completo' ? 390 : 90 });
+    }
+    return (this._d = out);
+  }
+  clsR(v) { return v < 20 ? 0 : v < 35 ? 1 : 2; }
+  clsS(v) { return v >= 65 ? 0 : v >= 45 ? 1 : 2; }
+  col(c) { return [this.G, this.Y, this.R][c]; }
+  fm(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
+  fp(v) { return v.toFixed(2).replace('.', ',') + '%'; }
+  traj(m, n, endVal, metric, rise) {
+    const pts = [];
+    for (let k = 0; k <= n; k++) {
+      const t = k / n, e = Math.pow(t, rise);
+      let v;
+      if (metric === 'risco') { const mid = 6 + m.u * 30; v = mid * (1 - e) + endVal * e + Math.sin(t * 9 + m.ph) * 5 * (1 - e); }
+      else { const st = endVal + (m.u - 0.5) * 40; v = st * (1 - t) + endVal * t + Math.sin(t * 7 + m.ph) * 4 * (1 - t); }
+      pts.push(Math.max(0, Math.min(100, v)));
+    }
+    return pts;
+  }
+  path(pts) { const n = pts.length - 1; return pts.map((v, i) => (i ? 'L' : 'M') + (56 + 934 * i / n).toFixed(1) + ' ' + (300 - 2.88 * v).toFixed(1)).join(' '); }
+  onQ = e => this.setState({ q: e.target.value });
+  clear = () => this.setState({ plan: 'Todos', origem: 'Todas', cls: 'Todas', cs: 'Todos', ld: 'Todos', q: '' });
+  renderVals() {
+    const st = this.state, set = k => v => () => this.setState({ [k]: v });
+    const all = this.data(), metric = st.metric;
+    const cls = m => metric === 'risco' ? this.clsR(m.risk) : this.clsS(m.score);
+    const qn = st.q.toLowerCase();
+    const rows = all.filter(m => (st.plan === 'Todos' || m.plano === st.plan) && (st.origem === 'Todas' || m.origem === st.origem) && (st.cls === 'Todas' || cls(m) === ['Saudável', 'Atenção', 'Alto risco'].indexOf(st.cls)) && (st.cs === 'Todos' || m.cs === st.cs) && (st.ld === 'Todos' || m.ld === st.ld) && (!qn || m.n.toLowerCase().includes(qn)));
+    const cnt = [0, 0, 0]; rows.forEach(m => cnt[cls(m)]++);
+    const N = rows.length || 1, pc = v => this.fp(100 * v / N);
+    const th = metric === 'risco' ? ['risco < 20%', 'risco 20–35%', 'risco ≥ 35%'] : ['score ≥ 65', 'score 45–64', 'score < 45'];
+    const kpis = [{ label: 'Missionários avaliados', val: String(rows.length), sub: 'área missionária ativa', c: '#4fb3ff' },
+      { label: 'Saudável', val: cnt[0] + ' (' + pc(cnt[0]) + ')', sub: th[0], c: this.G },
+      { label: 'Atenção', val: cnt[1] + ' (' + pc(cnt[1]) + ')', sub: th[1], c: this.Y },
+      { label: 'Alto risco', val: cnt[2] + ' (' + pc(cnt[2]) + ')', sub: th[2], c: this.R }];
+    // comparar responsáveis
+    const key = st.role === 'cs' ? 'cs' : 'ld', groups = {};
+    rows.forEach(m => (groups[m[key]] = groups[m[key]] || []).push(m));
+    const val = m => metric === 'risco' ? m.risk : m.score;
+    const avg = a => a.length ? a.reduce((x, m) => x + val(m), 0) / a.length : 0;
+    const gl = Object.entries(groups).map(([name, a]) => {
+      const c = [0, 0, 0]; a.forEach(m => c[cls(m)]++);
+      const bad = a.filter(m => cls(m) > 0), mr = a.filter(m => m.risk >= 20);
+      return { name, a, c, bad, avg: avg(a), avgBad: avg(bad), mens: a.reduce((x, m) => x + m.mens, 0), risk$: mr.reduce((x, m) => x + m.mens * m.risk / 100, 0) };
+    }).sort((x, y) => metric === 'risco' ? y.avg - x.avg : x.avg - y.avg);
+    const csHead = metric === 'risco'
+      ? ['Prioridade', st.role === 'cs' ? 'CS Owner' : 'Líder de missionários', 'Missionários', 'Saudável', 'Atenção', 'Alto risco', '% em Atenção e Alto risco', 'Risco médio', 'Risco médio (Atenção + Alto risco)', 'Mensalidades', 'Mensalidades em risco']
+      : ['Prioridade', st.role === 'cs' ? 'CS Owner' : 'Líder de missionários', 'Missionários', 'Saudável', 'Atenção', 'Alto risco', '% em Atenção e Alto risco', 'Score médio', 'Mensalidades'];
+    const csRows = gl.map((g, i) => {
+      const w = (t, c, b) => ({ t, c: c || this.M, w: b ? 700 : 400 });
+      const base = [w((i + 1) + 'º'), w(g.name, '#fff', 1), w(String(g.a.length)), w(String(g.c[0]), this.G), w(String(g.c[1]), this.Y), w(String(g.c[2]), this.R), w(this.fp(100 * g.bad.length / g.a.length))];
+      return { cells: metric === 'risco' ? [...base, w(this.fp(g.avg), '#fff', 1), w(this.fp(g.avgBad)), w(this.fm(g.mens)), w(this.fm(g.risk$), this.R)] : [...base, w(g.avg.toFixed(1).replace('.', ','), '#fff', 1), w(this.fm(g.mens))] };
+    });
+    const csCols = metric === 'risco' ? '.7fr 1.2fr .9fr .8fr .7fr .8fr 1.1fr .9fr 1.4fr 1fr 1.1fr' : '.7fr 1.3fr 1fr .9fr .8fr .9fr 1.2fr 1fr 1.1fr';
+    const opt = (label, cur, list, key) => ({ label, opts: list.map(t => ({ t, go: set(key)(t.value !== undefined ? t.value : t), bg: (cur === (t.value !== undefined ? t.value : t)) ? '#ff6a2b' : 'transparent', color: (cur === (t.value !== undefined ? t.value : t)) ? '#0b0f17' : '#c9d0dc', bd: (cur === (t.value !== undefined ? t.value : t)) ? '#ff6a2b' : 'rgba(255,255,255,.16)' })) });
+    const mk = (label, cur, pairs, key) => ({ label, cur, change: e => this.setState({ [key]: e.target.value }), opts: pairs.map(([t, v]) => ({ t, v })), _old: pairs.map(([t, v]) => ({ t, go: set(key)(v), bg: cur === v ? '#ff6a2b' : 'transparent', color: cur === v ? '#0b0f17' : '#c9d0dc', bd: cur === v ? '#ff6a2b' : 'rgba(255,255,255,.16)' })) });
+    const filters = [mk('Agrupar por', st.role, [['CS Owner', 'cs'], ['Líder de missionários', 'ld']], 'role'),
+      mk('Plano', st.plan, [['Todos', 'Todos'], ['Completo', 'Completo'], ['Individual', 'Individual']], 'plan'),
+      mk('Origem', st.origem, [['Todas', 'Todas'], ['SEPAL', 'SEPAL'], ['Outra agência', 'Outra agência']], 'origem'),
+      mk('Classificação', st.cls, [['Todas', 'Todas'], ['Saudável', 'Saudável'], ['Atenção', 'Atenção'], ['Alto risco', 'Alto risco']], 'cls'),
+      mk('CS Owner', st.cs, [['Todos', 'Todos'], ...['CS 1', 'CS 2', 'CS 3', 'CS 4', 'CS 5'].map(x => [x, x])], 'cs'),
+      mk('Líder de missionários', st.ld, [['Todos', 'Todos'], ...['Líder 1', 'Líder 2', 'Líder 3', 'Líder 4'].map(x => [x, x])], 'ld'),
+      mk('Gráfico', metric, [['Risco', 'risco'], ['Score', 'score']], 'metric')];
+    const topn = [...rows].sort((a, b) => metric === 'risco' ? b.risk - a.risk : a.score - b.score).slice(0, 12);
+    const listRows = topn.map(m => { const w = (t, c, b) => ({ t, c: c || this.M, w: b ? 700 : 400 }); return { cells: [w(m.n, '#fff', 1), w(m.origem), w(st.role === 'cs' ? m.cs : m.ld), w(m.plano), w(this.fp(m.risk), this.col(this.clsR(m.risk)), 1), w(String(m.score), this.col(this.clsS(m.score)), 1), w(m.ac + ' acessos'), w(m.sv + ' de 4'), w(m.ev ? 'Sim' : 'Não', m.ev ? this.G : this.R), w(m.so ? 'Sim' : 'Não', m.so ? this.G : this.R)] }; });
+    const listHead = ['Missionário', 'Origem', st.role === 'cs' ? 'CS Owner' : 'Líder', 'Plano', 'Risco', 'Score atual', 'Acessos 30d', 'Serviços 30d', 'Evento no mês', 'Solicitação 30d'];
+    // gráficos
+    const gridY = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(v => ({ y: 300 - 2.88 * v, ty: 304 - 2.88 * v, t: v + (metric === 'risco' ? '%' : '') }));
+    const gx = (from, step) => { const o = []; for (let d = from; d <= 0; d += step) o.push({ x: 56 + 934 * (d - from) / (0 - from), t: String(d) }); return o; };
+    const lines = rows.slice(0, 70).map(m => { const c = cls(m); return { d: this.path(this.traj(m, 24, metric === 'risco' ? m.risk : m.score, metric, 2.4)), c: this.col(c) }; });
+    // histórico
+    const exits = [...all].sort((a, b) => b.risk - a.risk).slice(0, 14);
+    const today = new Date(2026, 9, 15), fd = d => d.toLocaleDateString('pt-BR');
+    const hr = exits.map((m, i) => { const des = new Date(today.getTime() - (1 + (i * 3) % 14) * 864e5), cad = new Date(des.getTime() - Math.max(0.2, m.ten) * 365 * 864e5); const w = (t, c, b) => ({ t, c: c || this.M, w: b ? 700 : 400 }); return { m, cells: [w(m.n, '#fff', 1), w(m.origem), w(m.plano), w(m.cs), w(this.fp(m.risk), this.col(this.clsR(m.risk)), 1), w(String(m.score), this.col(this.clsS(m.score)), 1), w(fd(cad)), w(Math.round((des - cad) / 864e5) + ' dias')] }; });
+    const hc = [0, 0, 0]; exits.forEach(m => hc[this.clsR(m.risk)]++);
+    const hk = (label, i, sub) => ({ label, val: hc[i] + ' (' + this.fp(100 * hc[i] / exits.length) + ')', c: this.col(i), sub });
+    const nav = [['geral', 'Índice de Vínculo'], ['hist', 'Análise Histórica'], ['doc', 'Documentação'], ['tec', 'Detalhes técnicos']].map(([k, t]) => ({ t, go: set('page')(k), bg: st.page === k ? 'rgba(255,106,43,.16)' : 'transparent', color: st.page === k ? '#ff8a4c' : '#a9b1bd' }));
+    const P = (h, p, rows, cols) => ({ h, p: Array.isArray(p) ? p : [p], hasRows: !!rows, rows: (rows || []).map((r, i) => ({ cells: r, cols, w: i === 0 ? 700 : 400, color: i === 0 ? '#fff' : this.M })) });
+    const docs = [
+      P('O que o painel mede', ['O painel usa duas medidas para cada missionário da Área Missionária. Elas se complementam: o Score explica, o Risco prioriza a fila.', 'Os números são recalculados 1×/dia, às 8h da manhã (horário de Brasília): tanto o Score quanto o Risco de cada missionário são atualizados nesse horário e ficam fixos até o dia seguinte.', 'Regra prática: score alto = bom, risco alto = ruim. São escalas opostas de propósito.'], [['', 'O que é', 'Para que serve'], ['Score', 'soma de pontos (0–100)', 'explicar, em linguagem simples, por que o vínculo está bom ou fraco'], ['Risco', 'probabilidade de saída (0–100%)', 'ordenar a fila de contato: quem acionar primeiro']], '.6fr 1.2fr 2fr'),
+      P('Quem é avaliado', ['Todo missionário com acesso à Área Missionária, em um de dois planos:', 'Individual: missionário de qualquer agência que contrata, por conta própria, um ou mais serviços das Áreas SEPAL.', 'Completo: missionário da própria SEPAL, com o pacote completo de serviços incluído.', 'Os dois planos são avaliados pelos mesmos sinais. A origem (SEPAL ou outra agência) é um filtro, não entra no cálculo.']),
+      P('Quem acompanha', ['Cada missionário tem um responsável. O painel permite agrupar a carteira de duas formas: por CS Owner (quem cuida da conta) ou por Líder de missionários (quem lidera o grupo). Os nomes exibidos no protótipo são genéricos.', 'O CS Owner vem do CRM. Quando está vazio, entra o proprietário do contato. O líder vem do cadastro da Área Missionária.']),
+      P('1. O Score — soma de pontos', ['O score soma pontos de 7 variáveis. Cada uma vale um número fixo de pontos e a soma vai de 0 a 100. Os pesos abaixo são provisórios e podem ser ajustados no formulário de pesos.'], [['Variável', 'Peso', 'Como pontua'], ['Adimplência', '35', 'mensalidade sem atraso acima de 30 dias: em dia leva tudo, atraso zera'], ['Tempo de casa', '16', 'graduado: até 1 ano 0 · 1–2 anos ¼ · 2–4 anos ⅗ · 4+ anos os pontos inteiros'], ['Acessos', '15', 'proporcional: acessos distintos à área em 30d, até o teto de 4'], ['Serviços usados', '13', 'proporcional: áreas de apoio usadas em 30d, até o teto de 3'], ['Eventos', '9', 'participou ou se inscreveu em ao menos 1 evento no mês'], ['Solicitações', '8', 'abriu ao menos 1 solicitação de serviço em 30d'], ['Cadastro atualizado', '4', 'atualizou dados ou prestou contas no mês']], '1.2fr .5fr 3fr'),
+      P('Classificação do Score', ['Saudável (65 ou mais) · Atenção (45 a 64) · Risco (abaixo de 45).', 'A maioria das variáveis é tudo-ou-nada. Três são graduais: Acessos e Serviços usados pontuam proporcional a um teto, e Tempo de casa por faixas. A Adimplência pesa mais porque a mensalidade em atraso é o sinal mais forte de saída.']),
+      P('2. Risco de saída — modelo XGBoost', ['O risco resolve o que o score não vê: a tendência. É a saída de um modelo XGBoost (árvores de decisão) que estima a probabilidade de o missionário deixar a área nos próximos meses.', 'Atualizado 1×/dia, às 8h, o risco classifica cada missionário: Saudável abaixo de 20% · Atenção entre 20% e 35% · Risco de 35% para cima. É por essa probabilidade que a fila de contato é ordenada.']),
+      P('3. Comparar responsáveis', ['Abaixo dos cards há uma tabela com uma linha por CS Owner ou por Líder de missionários, conforme a opção Agrupar por. Ela mostra como está cada carteira e quanto da mensalidade está exposto.', 'Ordem de Prioridade: 1º é a carteira que mais precisa de ação. Segue o maior Risco médio ou o menor Score médio.', 'Risco médio (Atenção + Alto risco): risco médio só dos missionários com risco de 20% ou mais. Diz o quanto o problema é grave, não quantos são.', 'Mensalidades em risco: risco × mensalidade dos missionários em atenção e alto risco, o risco traduzido em dinheiro.', 'A tabela mostra a carteira, não avalia o responsável. Carteiras pequenas oscilam com poucos casos, por isso não existe nota nem ranking de bom ou ruim.']),
+      P('4. Validação', ['A validação do Score e do Risco contra as saídas reais será feita assim que houver histórico suficiente de missionários desativados. Até lá, os pesos e as faixas são provisórios e os dados do protótipo são fictícios.']),
+      P('5. Limites', ['O risco ordena, mas não acerta 100% dos casos.', 'Parte das saídas tem causa externa à plataforma (mudança de agência, retorno ao campo, decisão financeira). Nenhum dado de uso antecipa isso.', 'Para melhorar além do uso, será preciso dado de outra natureza: contatos do CS, chamados e sinais comerciais.'])
+    ];
+    const tecs = [
+      { h: 'Bases de dados', p: ['Cadastro: tempo de casa, plano (Completo ou Individual), origem (SEPAL ou outra agência) e líder de missionários.', 'Cobrança: situação das mensalidades: dias de atraso, mensalidades em aberto e já pagas.', 'Produto (Área Missionária): acessos, serviços usados, solicitações, eventos e atualização de cadastro.', 'CRM: o CS Owner de cada missionário. Não entra no Score nem no Risco: serve para agrupar e filtrar.'] },
+      { h: 'Variáveis do modelo', p: ['As variáveis de nível (valor do indicador no mês) e as derivadas (variação de um mês para o outro, como meses seguidos sem acesso ou parou de abrir solicitações) serão selecionadas uma a uma pelo ganho de AUC do XGBoost, com teste de vazamento.', 'Regra de inadimplência: até o 3º dia depois do vencimento a mensalidade conta como nada em aberto. A partir do 4º dia o atraso pesa, e pesa mais a cada dia. No Score o atraso só conta depois de 30 dias.'] },
+      { h: 'Calibração', p: ['A nota crua do XGBoost é transformada em probabilidade real pelo ajuste Platt (sigmoide), para que “25%” signifique 25% de chance. Não muda a ordem da fila.'] },
+      { h: 'Protótipo', p: ['Os 160 missionários, nomes, responsáveis e valores desta tela são gerados de forma fictícia, só para demonstrar o layout e o cálculo.'] }
+    ];
+    return {
+      q: st.q, onQ: this.onQ, clear: this.clear,
+      nav, kpis, csHead, csRows, csCols, filters, listRows, listHead, gridY, gridX: gx(-390, 30), lines,
+      roleLabel: st.role === 'cs' ? 'CS Owners' : 'Líderes de missionários',
+      listCount: topn.length + ' de ' + rows.length + ' missionários, ordenados por ' + (metric === 'risco' ? 'maior risco' : 'menor score'),
+      chartTitle: metric === 'risco' ? 'Risco de saída × dias até hoje' : 'Score × dias até hoje',
+      xAxis: 'Quantidade de dias até hoje (0 = hoje)',
+      showGeral: st.page === 'geral' ? 'flex' : 'none', showHist: st.page === 'hist' ? 'flex' : 'none', showDoc: st.page === 'doc' ? 'flex' : 'none', showTec: st.page === 'tec' ? 'flex' : 'none',
+      histKpis: [hk('Alto risco', 2, 'risco de saída ≥ 35%'), hk('Atenção', 1, 'risco de saída 20–35%'), hk('Saudável', 0, 'risco de saída < 20%')],
+      histGridX: gx(-360, 30), histRows: hr.map(h => ({ cells: h.cells })), histHead: ['Missionário', 'Origem', 'Plano', 'Último CS Owner', 'Risco de saída', 'Score de saída', 'Data de cadastro', 'Tempo de vida'],
+      histLines: hr.map(h => ({ d: this.path(this.traj(h.m, 24, h.m.risk, 'risco', 2.2)), c: this.col(this.clsR(h.m.risk)) })),
+      histCount: exits.length + ' missionários desativados no período', docs, tecs
+    };
+  }
+}
+</script>
+</body>
+</html>
