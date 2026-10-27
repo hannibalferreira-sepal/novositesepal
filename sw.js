@@ -4,7 +4,7 @@
    • Demais arquivos: devolve o cache e atualiza em segundo plano.
    • push / notificationclick prontos para o push real (VAPID) no produto.
    Para publicar uma nova versão, troque V. */
-const V = 'sepal-v3-2';
+const V = 'sepal-v3-3';
 const SHELL = ['./', 'index.html', 'site.html', 'area-missionaria.html', 'painel-vinculo.html', 'offline.html', 'assets/orig-fonts.css',
   'assets/vendor/embed.js', 'assets/vendor/support.js', 'assets/vendor/react.min.js', 'assets/vendor/react-dom.min.js', 'assets/vendor/sepal-globe.js',
   'assets/vendor/d3.min.js', 'assets/vendor/topojson-client.min.js', 'assets/vendor/land-110m.json',

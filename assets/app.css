@@ -447,3 +447,58 @@ body.route-chat{overflow:hidden}
 .sp-hs-row b{font:800 26px 'Archivo',sans-serif;color:inherit;line-height:1.1}
 .sp-hs-row span:first-child b{color:#f3efe8}
 @media (prefers-reduced-motion:reduce){.sp-spin{animation:none}}
+
+/* ===== Desktop: UMA barra superior (menu original do site + itens do app + selo + sino + Área Missionária) ===== */
+@media (min-width:900px){
+  .sp-top-in{max-width:1680px;gap:10px;padding:0 20px}
+  .sp-logo{margin-right:6px}
+  .sp-back{margin-right:2px}
+  .sp-dnav{margin-left:6px;gap:2px;align-items:center;min-width:0}
+  .sp-dnav>button,.sp-dnav .sp-dl{min-height:44px;padding:0 13px;border-radius:999px;border:0;background:none;color:#fff;font:500 15px/1 'Instrument Sans',system-ui,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;text-decoration:none}
+  .sp-dnav>button:hover,.sp-dnav .sp-dl:hover,.sp-dd.open .sp-dl{background:rgba(255,255,255,.1)}
+  .sp-dnav>button.on{background:rgba(255,255,255,.16)}
+  .sp-dnav .sp-dl i{font-style:normal;font-size:10px;opacity:.55;letter-spacing:.02em}
+  .sp-dnav .sp-dl em{font-style:normal;font-size:10px;opacity:.7}
+  .sp-dsep{width:1px;height:22px;background:var(--line);margin:0 6px;flex:none}
+  .sp-dd{position:relative}
+  .sp-dd-menu{position:absolute;top:100%;left:0;padding-top:8px;z-index:60;width:300px}
+  .sp-dd-menu::before{content:"";position:absolute;inset:8px 0 0 0;background:#0e1a2e;border:1px solid rgba(255,255,255,.16);border-radius:20px;box-shadow:0 24px 50px rgba(0,0,0,.5);z-index:-1}
+  .sp-dd-menu{display:flex;flex-direction:column;gap:2px;padding:16px 8px 8px;isolation:isolate}
+  .sp-dd-menu a,.sp-dd-menu button{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;border:0;background:none;text-align:left;text-decoration:none;color:#fff;cursor:pointer;font-family:inherit}
+  .sp-dd-menu a:hover,.sp-dd-menu button:hover,.sp-dd-menu a:focus-visible,.sp-dd-menu button:focus-visible{background:rgba(255,255,255,.08)}
+  .sp-dd-menu b{font-weight:600;font-size:15px}
+  .sp-dd-menu small{font-size:13px;color:#a9b1bd}
+  .sp-cta-am{min-height:44px;padding:0 20px;border-radius:999px;font:600 15px/1 'Instrument Sans',system-ui,sans-serif;color:#fff;white-space:nowrap;cursor:pointer;background:rgba(214,92,104,.32);border:1px solid rgba(255,150,160,.45);flex:none}
+  .sp-cta-am:hover{background:rgba(214,92,104,.5)}
+  .sp-cta-am.on{background:rgba(214,92,104,.62);border-color:rgba(255,170,178,.8)}
+  .sp-tag-top,.sp-logo,.sp-top-inst,.sp-ib,.sp-dnav{flex:none}
+}
+@media (min-width:900px) and (max-width:1279px){
+  .sp-top-in{gap:6px;padding:0 12px}
+  .sp-logo img{height:34px}
+  .sp-dnav>button,.sp-dnav .sp-dl{padding:0 9px;font-size:14px;gap:4px}
+  .sp-dnav .sp-dl i{display:none}
+  .sp-dsep{margin:0 2px}
+  .sp-cta-am{padding:0 14px;font-size:14px}
+  .sp-top-inst span{display:none}.sp-top-inst{padding:0 10px}
+  .sp-tag-top{font-size:9px;padding:2px 6px;letter-spacing:.08em}
+}
+@media (min-width:900px) and (max-width:1099px){
+  .sp-logo img{height:32px}
+  .sp-dnav>button,.sp-dnav .sp-dl{padding:0 7px;font-size:13px}
+  .sp-cta-am{padding:0 11px;font-size:13px}
+}
+@media (min-width:900px) and (max-width:1499px){.sp-dnav .sp-dl i{display:none}.sp-top-inst span{display:none}.sp-top-inst{padding:0 10px}}
+@media (min-width:900px) and (max-width:1019px){
+  .sp-top-in{gap:4px;padding:0 8px}
+  .sp-logo{margin-right:0}.sp-logo img{height:28px}
+  .sp-dnav{margin-left:2px;gap:0}
+  .sp-dnav>button,.sp-dnav .sp-dl{padding:0 6px;font-size:13px;gap:3px}
+  .sp-dsep{margin:0 1px}
+  .sp-tag-top{font-size:8px;padding:2px 5px;letter-spacing:.04em}
+  .sp-top .sp-ib{width:38px;height:38px}
+  .sp-cta-am{padding:0 9px;font-size:13px}
+}
+@media (min-width:900px) and (max-width:1279px){.sp-top-inst{display:none}}
+@media (min-width:1280px) and (max-width:1499px){.sp-dnav>button,.sp-dnav .sp-dl{padding:0 11px}}
+@media (min-width:1500px){.sp-dnav>button,.sp-dnav .sp-dl{padding:0 15px}}

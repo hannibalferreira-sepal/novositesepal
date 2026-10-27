@@ -22,3 +22,8 @@
 - Grupo WhatsApp "MEU SEPAL" lido (prints do check-in PAI + 3 áudios + lista de 01/10).
 - Planilha "Projetos" (id 1kTJfrCN3tOByj_cSOOo9Q_rYDITDERjahiJdslMttpg): aba "erros" renomeada para "erros e atualizações"; linhas 14-22 adicionadas (5 erros, 4 melhorias); aba "ideias" linhas 8-15 (lista de 01/10).
 - Pendente: confirmar se a janela de disparos foi ampliada (linha 9 cita 6h-21h; pedido 7h-21h); GitHub sem permissão de escrita (conta conectada errada).
+
+## 27/10/2026 · barra única no desktop (SW sepal-v3-3)
+- Desktop (≥ 900 px): UMA barra superior (menu original do site + Doações/Atendimento/Perfil + Instalar + PROTÓTIPO + sino + botão Área Missionária = Central). O header do site no iframe fica oculto no desktop. Celular inalterado.
+- `arquivo-original-v1/` (site antigo) deixou de ser publicado (`.vercelignore`); só existe a v3.
+- Fonte: `src/p3b_app.tsx` (Topbar/SiteMenu), `new.css` (bloco "Desktop: UMA barra"), `orig/build_originals.py`; testes `tests/v3.py` (146) e `tests/full.py` (87), todos passando.
