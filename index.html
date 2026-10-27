@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sepal · Servindo aos que servem (protótipo v3)</title>
+<meta name="description" content="Protótipo navegável da nova plataforma Sepal: site, Área do Missionário, doações e atendimento. Dados fictícios.">
+<meta name="theme-color" content="#0a111d">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sepal">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preload" href="assets/fonts/Archivo-300-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/app.css">
+<style>html,body{margin:0;background:#0a111d;color:#f3efe8}.boot{min-height:100dvh;display:grid;place-items:center;font-family:system-ui,sans-serif}.boot img{width:120px;height:auto;opacity:.9}</style>
+<script>
+/* captura o aviso de instalação (Android/Chrome) antes de o app carregar */
+window.__bip=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;window.dispatchEvent(new Event('sepal-bip'));});
+/* service worker: só em HTTPS ou localhost */
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+}
+</script>
+</head>
+<body>
+<div id="root"><div class="boot"><img src="assets/img/logo-branco.webp" alt="Sepal" width="120" height="96"></div></div>
+<noscript><p style="padding:24px;font-family:system-ui">Este protótipo precisa de JavaScript. Ative-o para navegar.</p></noscript>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
